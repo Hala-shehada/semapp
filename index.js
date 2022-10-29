@@ -14,6 +14,6 @@ app.use(express.json());
 const userRoute = require("./routes/user");
 app.use("/user", userRoute);
 
-app.route("/").get((req,res) => res.json("hello world !"));
+app.route("/").get((req,res) => res.json("hello world!!!"));
 
 app.listen(Port, () => console.log(`welcome your server lisiting at port ${Port}`));
