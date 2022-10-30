@@ -6,7 +6,7 @@ require('dotenv').config();
 const bookRoute = require('./routes/books');
 // const mongoDbURL = process.env.mongoDbURL || 'mongodb+srv://halanuha:QKkdp2tuhnPF45j8@appdb.u8evh6i.mongodb.net/<SemDB>?retryWrites=true&w=majority'
 // mongoose.connect("mongodb+srv://halanuha:QKkdp2tuhnPF45j8@appdb.u8evh6i.mongodb.net/<SemDB>?retryWrites=true&w=majority",{ useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true } )
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true } )
 const connection = mongoose.connection;
 connection.once("open", ()=>{
     console.log("MongoDb connected");
