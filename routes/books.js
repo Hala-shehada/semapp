@@ -17,4 +17,12 @@ router.post('/',(req,res) => {
         res.status(500).send("not");
     });
 });
+
+router.get("/",(req,res) => {
+    Book.find()
+    .then((books) => res.send(books))
+    .catch((error) => {
+        res.status(500).send("wrong");
+    });
+});
 module.exports = router;
