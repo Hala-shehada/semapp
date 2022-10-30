@@ -17,7 +17,8 @@
     "nodemon": "^2.0.20"
   },
   "engines": {
-    "node": "19.x"
+    "node": "19.x",
+    "npm": "8.19.2"
   },
   "description": ""
 }
