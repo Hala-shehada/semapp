@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Port = process.env.PORT || 5000;
 const app = express();
 require('dotenv').config();
-
+const bookRoute = require('./routes/books');
 // const mongoDbURL = process.env.mongoDbURL || 'mongodb+srv://halanuha:QKkdp2tuhnPF45j8@appdb.u8evh6i.mongodb.net/<SemDB>?retryWrites=true&w=majority'
 // mongoose.connect("mongodb+srv://halanuha:QKkdp2tuhnPF45j8@appdb.u8evh6i.mongodb.net/<SemDB>?retryWrites=true&w=majority",{ useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true } )
@@ -13,8 +13,10 @@ connection.once("open", ()=>{
 });
 
 app.use(express.json());
-const userRoute = require("./routes/user");
-app.use("/user", userRoute);
+app.use(express.urlencoded({extended:true}));
+// const userRoute = require("./routes/user");
+// app.use("/user", userRoute);
+app.use('/api/books',bookRoute);
 
 app.route("/").get((req,res) => res.json("hello world!!!"));
 
