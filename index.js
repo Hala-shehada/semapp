@@ -2,21 +2,26 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Port = process.env.PORT || 5000;
 const app = express();
+// const http=require("http");
+// const server=http.createServer(app);
 require('dotenv').config();
 const bookRoute = require('./routes/books');
-// const mongoDbURL = process.env.mongoDbURL || 'mongodb+srv://halanuha:QKkdp2tuhnPF45j8@appdb.u8evh6i.mongodb.net/<SemDB>?retryWrites=true&w=majority'
-// mongoose.connect("mongodb+srv://halanuha:QKkdp2tuhnPF45j8@appdb.u8evh6i.mongodb.net/<SemDB>?retryWrites=true&w=majority",{ useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true } )
-const connection = mongoose.connection;
-connection.once("open", ()=>{
+
+async function connectDB() {
+    await mongoose.connect(
+        process.env.MONGO_URL,
+      { useUnifiedTopology: true, useNewUrlParser: true }
+    );
+   
     console.log("MongoDb connected");
-});
+   }
+   connectDB();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-// const userRoute = require("./routes/user");
-// app.use("/user", userRoute);
-app.use('/api/books',bookRoute);
+const userRoute = require("./routes/user");
+app.use("/user", userRoute);
+app.use('/books',bookRoute);
 
 app.route("/").get((req,res) => res.json("hello world!!!"));
 
