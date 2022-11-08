@@ -20,6 +20,22 @@ const User = Schema({
         required: true,
     },
 
+    phone: {
+        type: String,
+        required: true,
+
+    },
+
+
+    location: {
+        type: String,
+        required: true,
+
+    },
+
+
+
+
 
 });
 
