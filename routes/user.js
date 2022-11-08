@@ -22,8 +22,8 @@ router.route("/update/:username").patch(middleware.checkToken,(req, res) => {
 
 });
      
-//middleware.checkToken,
-router.route("/delete/:username").delete((req, res) => {
+
+router.route("/delete/:username").delete(middleware.checkToken,(req, res) => {
   User.findOneAndDelete({ username:req.params.username},
      {$set: { password:req.body.password} },
      (err,result) => {
@@ -38,8 +38,7 @@ router.route("/delete/:username").delete((req, res) => {
 
 });
 
-//middleware.checkToken,
-router.route("/:username").get((req, res) => {
+router.route("/:username").get(middleware.checkToken,(req, res) => {
   User.findOne({ username:req.params.username},(err,result) => {
    if (err) return res.status(500).json({msg: err});
    return res.json({

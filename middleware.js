@@ -1,11 +1,32 @@
 const jwt = require("jsonwebtoken");
+const { decode } = require("punycode");
 const config = require("./config");
 
 const checkToken = (req, re, next)=> {
     let token = req.headers["authorization"];
     console.log(token);
     token = token.slice(7,token.length);
-    next();
+    if(token)
+    {
+        jwt.verify(token,config.key,(err,decoded)=>{
+            if(err)
+            {
+                return res.json({
+                    status:false,
+                    msg:"Token is invalid"
+                });
+            }else {
+                req.decoded = decoded;
+                next();
+            }
+        });
+    } else {
+        return res.json({
+            status:false,
+            msg: "Token is not provided",
+        });
+    }
+   
 };
 
 module.exports = {
