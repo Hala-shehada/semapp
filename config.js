@@ -1,3 +1,3 @@
-module.exports={
-    key:"MySemsak",
+module.exports = {
+    key:"MySemsark",
 };
