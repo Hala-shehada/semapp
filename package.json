@@ -23,5 +23,15 @@
     "node": "19.x",
     "npm": "8.19.2"
   },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hala-shehada/semapp.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Hala-shehada/semapp/issues"
+  },
+  "homepage": "https://github.com/Hala-shehada/semapp#readme",
   "description": ""
 }
