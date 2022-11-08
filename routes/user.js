@@ -7,7 +7,7 @@ const config = require("../config");
 const jwt = require("jsonwebtoken");
 const middleware = require("../middleware");
 
-router.route("/update/:username").patch(middleware. checkToken,(req, res) => {
+router.route("/update/:username").patch(middleware.checkToken,(req, res) => {
   User.findOneAndUpdate({ username:req.params.username},
      {$set: { password:req.body.password} },
      (err,result) => {
@@ -22,7 +22,7 @@ router.route("/update/:username").patch(middleware. checkToken,(req, res) => {
 
 });
      
-//middleware. checkToken,
+//middleware.checkToken,
 router.route("/delete/:username").delete((req, res) => {
   User.findOneAndDelete({ username:req.params.username},
      {$set: { password:req.body.password} },
@@ -38,8 +38,8 @@ router.route("/delete/:username").delete((req, res) => {
 
 });
 
-
-router.route("/:username").get(middleware. checkToken,(req, res) => {
+//middleware.checkToken,
+router.route("/:username").get((req, res) => {
   User.findOne({ username:req.params.username},(err,result) => {
    if (err) return res.status(500).json({msg: err});
    return res.json({
